@@ -1,44 +1,60 @@
+const xzs = ["home", "about", "work", "contact"];
 const url = document.baseURI;
 const selected = url.split("#")[1];
-addSelected(selected);
-document.querySelector(`#${selected}`).scrollIntoView();
-// alert(tag);
+window.addEventListener("load", () => {
+  let html = "";
+  xzs.forEach((xz) => {
+    html += `<div class="box">
+    <a class="custom-underline" href="#${xz}">${capitalizeFirstLetter(xz)}</a>
+  </div>`;
+  });
+  document.querySelector("nav").innerHTML = html;
+  addSelected(selected);
+  document.querySelector(`#${selected}`).scrollIntoView();
+  // alert(tag);
 
-window.addEventListener("hashchange", (e) => {
-  const url = e.newURL.split("#")[1];
-  addSelected(url);
+  window.addEventListener("hashchange", (e) => {
+    const url = e.newURL.split("#")[1];
+    addSelected(url);
+  });
+  let lastScrollTop = 0;
+  window.addEventListener("scroll", (e) => {
+    const prevSelected = document.querySelector(".selected");
+    const nameHref = prevSelected.getAttribute("href").replace("#", "");
+    const innerHeight = window.innerHeight;
+    let currentPos, nextPos;
+    currentPos = xzs.indexOf(nameHref);
+    const rect = document
+      .querySelector(`#${xzs[currentPos]}`)
+      .getBoundingClientRect();
+    const st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > lastScrollTop) {
+      // downscroll code
+      // console.log("down");
+      nextPos = currentPos + 1;
+      if (innerHeight - rect.bottom >= 600) {
+        addSelected(xzs[nextPos]);
+      }
+    } else {
+      // upscroll code
+      // console.log("up");
+      if (currentPos === 0) {
+        nextPos = 0;
+      } else nextPos = currentPos - 1;
+      if (innerHeight - rect.top <= 150) {
+        addSelected(xzs[nextPos]);
+      }
+    }
+    lastScrollTop = st;
+  });
 });
-window.addEventListener("scroll", (e) => {
-  const prevSelected = document.querySelector(".selected");
-  const nameHref = prevSelected.getAttribute("href").replace("#", "");
-  const xyz = document.querySelectorAll("nav a");
-  // xyz.forEach((tag) => {
-  //   const asd = tag.getAttribute("href").replace("#", "");
-  //   // console.log(asd);
-  // });
-  if (isInViewport(document.querySelector(`#${nameHref}`))) {
-    console.log(nameHref);
-    const arrTag = document.querySelectorAll(`nav a`);
-    const currentPos = arrTag.map((tag, i) =>
-      tag.getAttribute("href").replace("#", "") === nameHref ? i : null
-    )[0];
-    console.log(currentPos);
-    // const next = document
-    //   .querySelectorAll("nav a")
-    //   .forEach((tag) => tag.getAttribute("href").replace("#", ""));
-    // addSelected(nameHref);
-  }
-});
-function isInViewport(el) {
-  const rect = el.getBoundingClientRect();
-  return (
-    800 <=
-    (window.innerHeight || document.documentElement.clientHeight) - rect.bottom
-  );
-}
+
 function addSelected(selected) {
   const tag = document.querySelector(`[href="#${selected || "home"}"]`);
   const tags = document.querySelectorAll("nav a");
   tags.forEach((tag) => tag.classList.remove("selected"));
   tag.classList.add("selected");
+}
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
