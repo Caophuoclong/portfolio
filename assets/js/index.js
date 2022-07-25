@@ -1,34 +1,59 @@
-const xzs = ["home", "about", "education", "skills", "work", "contact"];
+const xzs = ['home', 'about', 'education', 'skills', 'work', 'contact'];
 const url = document.baseURI;
-const selected = url.split("#")[1] || "home";
+const selected = url.split('#')[1] || 'home';
 const converter = new showdown.Converter();
 console.log(converter);
-const introMySelf = `**Hi, I'm Phuoc Long** asdasdasdsdsads
+const introMySelf = `**Hi, I'm Tran Cao Phuoc Long**.\n
+I'm a senior student at **Can Tho University**, I'm majoring in **Software Engineering**. I expect graduated in Spring, 2024. \n
+I'm looking forward to work in a professional environment, that help me improve my skills and knowledge.\n
+I alway put my heart and soul into my work, and I'm always looking for new opportunities to learn and grow.\n
+Apart from coding, I also like to play games, do sport and listen to music. \n
+That is all I have to share with you. Thank for reading.
   `;
-document.querySelector("#introMySelf").innerHTML =
+const homeIntro = `
+In this site, you can find my resume, my skills, my work, and my contact.\n
+I code this project with **HTML5, CSS3 and JavaScript**.
+`;
+document.querySelector('#introMySelf').innerHTML =
   converter.makeHtml(introMySelf);
-window.addEventListener("load", () => {
-  let html = "";
+document.querySelector('#homeIntro').innerHTML = converter.makeHtml(homeIntro);
+
+window.addEventListener('load', () => {
+  const showUp = document.querySelector('.showUp');
+  const typewriter = new Typewriter(showUp);
+  console.log(typewriter);
+  typewriter
+    .pauseFor(2500)
+    .typeString('A simple yet powerful native javascript')
+    .pauseFor(300)
+    .deleteChars(10)
+    .typeString('<strong>JS</strong> plugin for a cool typewriter effect and ')
+    .typeString(
+      '<strong>only <span style="color: #27ae60;">5kb</span> Gzipped!</strong>'
+    )
+    .pauseFor(1000)
+    .start();
+  let html = '';
   xzs.forEach((xz) => {
     html += `<div class="box">
     <a class="custom-underline" href="#${xz}">${capitalizeFirstLetter(xz)}</a>
   </div>`;
   });
-  document.querySelector("nav").innerHTML = html;
+  document.querySelector('nav').innerHTML = html;
   addSelected(selected);
   document.querySelector(`#${selected}`).scrollIntoView();
-  window.addEventListener("hashchange", (e) => {
-    const url = e.newURL.split("#")[1];
-    const prevSelected = document.querySelector(".selected");
-    const name = prevSelected.getAttribute("href").split("#")[1];
+  window.addEventListener('hashchange', (e) => {
+    const url = e.newURL.split('#')[1];
+    const prevSelected = document.querySelector('.selected');
+    const name = prevSelected.getAttribute('href').split('#')[1];
     const currentPos = xzs.indexOf(name);
     const nextPos = xzs.indexOf(url);
     addSelected(url);
   });
   let lastScrollTop = 0;
-  window.addEventListener("scroll", (e) => {
-    const prevSelected = document.querySelector(".selected");
-    const nameHref = prevSelected.getAttribute("href").replace("#", "");
+  window.addEventListener('scroll', (e) => {
+    const prevSelected = document.querySelector('.selected');
+    const nameHref = prevSelected.getAttribute('href').replace('#', '');
     const innerHeight = window.innerHeight;
     let currentPos, nextPos;
     currentPos = xzs.indexOf(nameHref);
@@ -54,10 +79,10 @@ window.addEventListener("load", () => {
 });
 
 function addSelected(selected) {
-  const tag = document.querySelector(`[href="#${selected || "home"}"]`);
-  const tags = document.querySelectorAll("nav a");
-  tags.forEach((tag) => tag.classList.remove("selected"));
-  tag.classList.add("selected");
+  const tag = document.querySelector(`[href="#${selected || 'home'}"]`);
+  const tags = document.querySelectorAll('nav a');
+  tags.forEach((tag) => tag.classList.remove('selected'));
+  tag.classList.add('selected');
 }
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
