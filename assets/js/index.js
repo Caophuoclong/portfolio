@@ -1,6 +1,12 @@
-const xzs = ["home", "about", "work", "contact"];
+const xzs = ["home", "about", "education", "skills", "work", "contact"];
 const url = document.baseURI;
-const selected = url.split("#")[1];
+const selected = url.split("#")[1] || "home";
+const converter = new showdown.Converter();
+console.log(converter);
+const introMySelf = `**Hi, I'm Phuoc Long** asdasdasdsdsads
+  `;
+document.querySelector("#introMySelf").innerHTML =
+  converter.makeHtml(introMySelf);
 window.addEventListener("load", () => {
   let html = "";
   xzs.forEach((xz) => {
@@ -11,10 +17,12 @@ window.addEventListener("load", () => {
   document.querySelector("nav").innerHTML = html;
   addSelected(selected);
   document.querySelector(`#${selected}`).scrollIntoView();
-  // alert(tag);
-
   window.addEventListener("hashchange", (e) => {
     const url = e.newURL.split("#")[1];
+    const prevSelected = document.querySelector(".selected");
+    const name = prevSelected.getAttribute("href").split("#")[1];
+    const currentPos = xzs.indexOf(name);
+    const nextPos = xzs.indexOf(url);
     addSelected(url);
   });
   let lastScrollTop = 0;
@@ -29,15 +37,11 @@ window.addEventListener("load", () => {
       .getBoundingClientRect();
     const st = window.pageYOffset || document.documentElement.scrollTop;
     if (st > lastScrollTop) {
-      // downscroll code
-      // console.log("down");
       nextPos = currentPos + 1;
-      if (innerHeight - rect.bottom >= 600) {
+      if (innerHeight - rect.bottom >= 800) {
         addSelected(xzs[nextPos]);
       }
     } else {
-      // upscroll code
-      // console.log("up");
       if (currentPos === 0) {
         nextPos = 0;
       } else nextPos = currentPos - 1;
