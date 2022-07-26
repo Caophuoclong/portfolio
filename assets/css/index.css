@@ -161,9 +161,7 @@ body {
         position: absolute;
         padding-left: 2rem;
         top: 50%;
-        translate: 0% -50%;
-        /* The typing effect */
-        /* The typewriter cursor effect */ }
+        translate: 0% -50%; }
         body main #home .intro .xxas {
           font-size: 2rem;
           font-weight: bold;
@@ -178,21 +176,6 @@ body {
           letter-spacing: 0.15em;
           /* Adjust as needed */
           animation: typing 2s steps(40, end), blink-caret 3s; }
-
-@keyframes typing {
-  from {
-    width: 0; }
-  to {
-    width: 100%; } }
-
-@keyframes blink-caret {
-  from,
-  to {
-    border-color: transparent; }
-  25% {
-    border-color: black; }
-  50% {
-    border-color: black; } }
         body main #home .intro a {
           background: transparent;
           border: 1px solid #000;
@@ -348,3 +331,21 @@ body {
 
 .hide {
   display: none; }
+
+ul {
+  list-style: disc; }
+
+.work span {
+  display: block; }
+
+.work__position {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.2rem; }
+
+.work__address, .work__time {
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem; }
+
+.work__description {
+  margin: 0 1.5rem; }

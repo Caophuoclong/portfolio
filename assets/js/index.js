@@ -1,4 +1,4 @@
-const xzs = ['home', 'about', 'education', 'skills', 'work', 'contact'];
+const xzs = ['home', 'about', 'education', 'skills', 'experiences', 'contact'];
 const url = document.baseURI;
 const selected = url.split('#')[1] || 'home';
 const converter = new showdown.Converter();
@@ -16,6 +16,10 @@ I code this project with **HTML5, CSS3 and JavaScript**.
 document.querySelector('#introMySelf').innerHTML =
   converter.makeHtml(introMySelf);
 document.querySelector('#homeIntro').innerHTML = converter.makeHtml(homeIntro);
+timeline(document.querySelectorAll('.timeline'), {
+  verticalStartPosition: 'left',
+  verticalTrigger: '150px',
+});
 function tapToShow(el) {
   const nextSibling = document.querySelector(`#${el}`);
   if (nextSibling.classList.contains('hide')) {

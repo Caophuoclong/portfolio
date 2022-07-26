@@ -84,29 +84,28 @@ body {
           animation: typing 2s steps(40, end), blink-caret 3s;
         }
 
-        /* The typing effect */
-        @keyframes typing {
-          from {
-            width: 0;
-          }
-          to {
-            width: 100%;
-          }
-        }
-
-        /* The typewriter cursor effect */
-        @keyframes blink-caret {
-          from,
-          to {
-            border-color: transparent;
-          }
-          25% {
-            border-color: black;
-          }
-          50% {
-            border-color: black;
-          }
-        }
+        // /* The typing effect */
+        // @keyframes typing {
+        //   from {
+        //     width: 0;
+        //   }
+        //   to {
+        //     width: 100%;
+        //   }
+        // }
+        // /* The typewriter cursor effect */
+        // @keyframes blink-caret {
+        //   from,
+        //   to {
+        //     border-color: transparent;
+        //   }
+        //   25% {
+        //     border-color: black;
+        //   }
+        //   50% {
+        //     border-color: black;
+        //   }
+        // }
 
         a {
           background: transparent;
@@ -252,8 +251,14 @@ body {
         }
       }
     }
+    #experiences {
+    }
   }
 }
+// .timeline__content {
+//   border-radius: 0 !important;
+//   border: 0 !important;
+// }
 
 .box {
   width: 100%;
@@ -317,4 +322,25 @@ body {
 }
 .hide {
   display: none;
+}
+ul {
+  list-style: disc;
+}
+.work {
+  span {
+    display: block;
+  }
+  &__position {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+  }
+  &__address,
+  &__time {
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+  }
+  &__description {
+    margin: 0 1.5rem;
+  }
 }
