@@ -16,6 +16,14 @@ I code this project with **HTML5, CSS3 and JavaScript**.
 document.querySelector('#introMySelf').innerHTML =
   converter.makeHtml(introMySelf);
 document.querySelector('#homeIntro').innerHTML = converter.makeHtml(homeIntro);
+function tapToShow(el) {
+  const nextSibling = document.querySelector(`#${el}`);
+  if (nextSibling.classList.contains('hide')) {
+    nextSibling.classList.remove('hide');
+  } else {
+    nextSibling.classList.add('hide');
+  }
+}
 
 window.addEventListener('load', () => {
   const showUp = document.querySelector('.showUp');

@@ -1,6 +1,5 @@
 /* http://meyerweb.com/eric/tools/css/reset/ */
 /* v1.0 | 20080212 */
-
 html,
 body,
 div,
@@ -68,39 +67,35 @@ td {
   outline: 0;
   font-size: 100%;
   vertical-align: baseline;
-  background: transparent;
-}
+  background: transparent; }
+
 body {
-  line-height: 1;
-}
+  line-height: 1; }
+
 ol,
 ul {
-  list-style: none;
-}
+  list-style: none; }
+
 q {
-  quotes: none;
-}
+  quotes: none; }
+
 q:before,
 q:after {
   content: '';
-  content: none;
-}
+  content: none; }
 
 /* remember to define focus styles! */
 :focus {
-  outline: 0;
-}
+  outline: 0; }
 
 /* remember to highlight inserts somehow! */
 ins {
-  text-decoration: none;
-}
+  text-decoration: none; }
+
 del {
-  text-decoration: line-through;
-}
+  text-decoration: line-through; }
 
 /* tables still need 'cellspacing="0"' in the markup */
 table {
   border-collapse: collapse;
-  border-spacing: 0;
-}
+  border-spacing: 0; }
