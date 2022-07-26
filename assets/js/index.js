@@ -2,7 +2,6 @@ const xzs = ['home', 'about', 'education', 'skills', 'work', 'contact'];
 const url = document.baseURI;
 const selected = url.split('#')[1] || 'home';
 const converter = new showdown.Converter();
-console.log(converter);
 const introMySelf = `**Hi, I'm Tran Cao Phuoc Long**.\n
 I'm a senior student at **Can Tho University**, I'm majoring in **Software Engineering**. I expect graduated in Spring, 2024. \n
 I'm looking forward to work in a professional environment, that help me improve my skills and knowledge.\n
@@ -20,18 +19,16 @@ document.querySelector('#homeIntro').innerHTML = converter.makeHtml(homeIntro);
 
 window.addEventListener('load', () => {
   const showUp = document.querySelector('.showUp');
-  const typewriter = new Typewriter(showUp);
-  console.log(typewriter);
+  const typewriter = new Typewriter(showUp, {
+    loop: true,
+  });
   typewriter
-    .pauseFor(2500)
-    .typeString('A simple yet powerful native javascript')
+    .pauseFor(500)
+    .typeString('Web Developer')
     .pauseFor(300)
-    .deleteChars(10)
-    .typeString('<strong>JS</strong> plugin for a cool typewriter effect and ')
-    .typeString(
-      '<strong>only <span style="color: #27ae60;">5kb</span> Gzipped!</strong>'
-    )
-    .pauseFor(1000)
+    .deleteAll()
+    .typeString('MERN Stack Developer')
+    .deleteAll()
     .start();
   let html = '';
   xzs.forEach((xz) => {
