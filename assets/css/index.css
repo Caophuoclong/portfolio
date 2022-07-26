@@ -224,14 +224,21 @@ body {
     opacity: 0.8; }
   to {
     opacity: 1; } }
-    body main #about p.title {
-      letter-spacing: 0.5rem;
-      font-size: 0.8rem;
-      color: #42464f4b; }
-    body main #about #introMySelf {
-      margin: 1rem 0;
-      font-size: 1rem;
-      line-height: 2rem; }
+    body main #about {
+      display: flex;
+      flex-direction: column; }
+      body main #about p.title {
+        letter-spacing: 0.5rem;
+        font-size: 0.8rem;
+        color: #42464f4b; }
+      body main #about #introMySelf {
+        margin: 1rem 0;
+        font-size: 1rem;
+        line-height: 2rem; }
+      body main #about .gh-contributors {
+        margin-top: auto;
+        font-size: 1.2rem;
+        font-weight: bold; }
 
 .box {
   width: 100%;
