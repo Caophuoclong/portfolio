@@ -7,6 +7,29 @@ const xzs = [
   'education',
   'contact',
 ];
+const imgPath = './assets/icons/';
+const iconLanguage = {
+  ReactJS: imgPath + 'reactjs-icon.svg',
+  TypeScript: imgPath + 'typescriptlang-icon.svg',
+  NodeJS: imgPath + 'nodejs-icon.svg',
+  'Socket.io': imgPath + 'socketio-icon.svg',
+};
+const iconWeb = {
+  web: imgPath + 'website.svg',
+  github: imgPath + 'github.svg',
+};
+const projects = [
+  {
+    name: 'Chat App',
+    image: './assets/images/projects/chatapp.png',
+    technicals: ['ReactJS', 'NodeJS', 'Socket.io', 'TypeScript'],
+    descriptions: '- Test\n- 1234\n- Xin chao',
+    link: {
+      web: 'https://caophuoclong.github.com',
+      github: '',
+    },
+  },
+];
 const url = document.baseURI;
 const selected = url.split('#')[1] || 'home';
 const converter = new showdown.Converter();
@@ -50,7 +73,65 @@ I code this project with **HTML5, CSS3 and JavaScript**.
 document.querySelector('#introMySelf').innerHTML =
   converter.makeHtml(introMySelf);
 document.querySelector('#homeIntro').innerHTML = converter.makeHtml(homeIntro);
+let projectsHTML = '';
+// projects.forEach((pr) => {
+//   pr.technicals.forEach(
+//     (techh) =>
+//       (tech += `<div class="project__items__item__technicals__technical parallelogram">${techh}</div>
+// `)
+//   );
+// });
+projects.forEach(
+  (project) =>
+    (projectsHTML += `
+<div class="tile bottom-right">
+<div class="project__items__item ">
+<img class="project__items__item__image " src="${project.image}" alt="">
+<p class="project__items__item__name">${project.name}</p>
+<div class="project__items__item__description">
+${converter.makeHtml(project.descriptions)}</div>
+<div class="project__items__item__technicals">
+  ${project.technicals.map(
+    (tech) => `<div class="project__items__item__technicals__technical ">
+    <img class="project__items__item__technicals__technical__image" src="${iconLanguage[tech]}"/>
+    ${tech}
+    </div>
+    `
+  )}
+</div>
+<!-- Paragraph description -->
 
+<div class="project__items__item__link">
+  ${
+    project.link.web.length > 0
+      ? `<a class="project__items__item__link__web" title="Website" href="${project.link.web}">
+      <img
+          class='project__items__item__link__img'
+          src="${iconWeb['web']}"
+        />
+    </a>`
+      : ''
+  }
+  ${
+    project.link.github.length > 0
+      ? `<a
+        class='project__items__item__link__github'
+        title='Github'
+        href='${project.link.github}'
+      >
+        <img
+          class='project__items__item__link__img'
+          src="${iconWeb['github']}"
+        />
+      </a>`
+      : ''
+  }
+</div>
+</div>
+           
+          </div>`)
+);
+document.querySelector('#project_list').innerHTML = projectsHTML;
 let expTimeLine = '';
 expirences.forEach((exp) => {
   let descs = '';
@@ -156,3 +237,18 @@ function addSelected(selected) {
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+let elementsArray = document.querySelectorAll('.tile');
+console.log(elementsArray);
+window.addEventListener('scroll', fadeIn);
+function fadeIn() {
+  for (var i = 0; i < elementsArray.length; i++) {
+    var elem = elementsArray[i];
+    var distInView = elem.getBoundingClientRect().top - window.innerHeight + 20;
+    if (distInView < 0) {
+      elem.classList.add('inView');
+    } else {
+      elem.classList.remove('inView');
+    }
+  }
+}
+fadeIn();
