@@ -1,7 +1,41 @@
-const xzs = ['home', 'about', 'education', 'skills', 'experiences', 'contact'];
+const xzs = [
+  'home',
+  'about',
+  'skills',
+  'experiences',
+  'projects',
+  'education',
+  'contact',
+];
 const url = document.baseURI;
 const selected = url.split('#')[1] || 'home';
 const converter = new showdown.Converter();
+const expirences = [
+  {
+    title: 'Fresher Fullstack Web Developer',
+    company: 'Gcalls',
+    location: 'VietNam',
+    date: {
+      // month from 0 to 11
+      from: new Date(2022, 0),
+      to: new Date(2022, 2),
+    },
+    descriptions: ['Test', '1234'],
+  },
+  {
+    title: 'Intern Fullstack Web Developer',
+    company: 'Gcalls',
+    location: 'VietNam',
+    date: {
+      // month from 0 to 11
+      from: new Date(2021, 7),
+      to: new Date(2021, 10),
+    },
+    descriptions: ['Test', '1234'],
+  },
+];
+
+expirences.sort((a, b) => a.date.from.getDate() - b.date.from.getDate());
 const introMySelf = `**Hi, I'm Tran Cao Phuoc Long**.\n
 I'm a senior student at **Can Tho University**, I'm majoring in **Software Engineering**. I expect graduated in Spring, 2024. \n
 I'm looking forward to work in a professional environment, that help me improve my skills and knowledge.\n
@@ -16,8 +50,34 @@ I code this project with **HTML5, CSS3 and JavaScript**.
 document.querySelector('#introMySelf').innerHTML =
   converter.makeHtml(introMySelf);
 document.querySelector('#homeIntro').innerHTML = converter.makeHtml(homeIntro);
+
+let expTimeLine = '';
+expirences.forEach((exp) => {
+  let descs = '';
+  exp.descriptions.forEach((desc) => {
+    descs += `<li>${desc}</li>`;
+  });
+  expTimeLine += `
+  <div class="timeline__item">
+  <div class="timeline__content">
+    <div class="work">
+      <span class="work__position">${exp.title}</span>
+      <!-- Where u work -->
+      <span class="work__address">@${exp.company}, ${exp.location}</span>
+      <!-- Time -->
+      <span class="work__time">${moment(exp.date.from).format(
+        'MMM, YYYY'
+      )} - ${moment(exp.date.to).format('MMM, YYYY')}</span>
+      <ul class="work__description">
+        ${descs}
+      </ul>
+    </div>
+  </div>
+</div>`;
+});
+document.querySelector('#expirence_timeline').innerHTML = expTimeLine;
 timeline(document.querySelectorAll('.timeline'), {
-  verticalStartPosition: 'left',
+  verticalStartPosition: 'right',
   verticalTrigger: '150px',
 });
 function tapToShow(el) {
