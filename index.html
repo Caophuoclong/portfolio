@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Porfilo</title>
-    <link rel="stylesheet" href="./assets/css/index.css" />
     <link
       rel="icon"
       href="./assets/icons/privacy-private.svg"
@@ -20,6 +19,11 @@
       referrerpolicy="no-referrer"
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./assets/css/index.css" />
+
     <script src="./assets/js/timeline.min.js"></script>
     <link href="./assets/css/timeline.min.css" rel="stylesheet" />
   </head>
@@ -40,7 +44,8 @@
       </nav>
     </aside>
     <main>
-      <div class="xyz tile" id="home">
+      <div class="notworking">My site not support your device resolution, maybe it too small!</div>
+      <div class="xyz" id="home">
         <div class="intro">
           <h1 class="xxas">Hi, Welcome to my portfolio</h1>
           <div id="homeIntro"></div>
@@ -59,7 +64,7 @@
           </a>
         </div>
       </div>
-      <div class="xyz tile" id="about">
+      <div class="xyz" id="about">
         <p class="title">WHO AM I?</p>
         <p style="margin: 1rem 0; font-size: 2rem">
           LET ME <span style="color: #69a9df">INTRODUCE</span> MYSELF
@@ -74,7 +79,7 @@
         </div>
       </div>
       
-      <div class="xyz skills tile" id="skills">
+      <div class="xyz skills" id="skills">
         <p class="title">MY SPECIALITY</p>
         <div class="skills__show">
           <div class="item">
@@ -128,7 +133,7 @@
         </div>
       </div>
 
-      <div class="xyz tile" id="experiences">
+      <div class="xyz" id="experiences">
         <p class="title">EXPERIENCES</p>
         <div class="timeline">
           <div class="timeline__wrap">
@@ -163,7 +168,7 @@
           
         </div>
       </div>
-      <div class="xyz tile" id="education">
+      <div class="xyz" id="education">
         <p class="title">JOURNEY</p>
         <div id="education-timeline">
           <div class="education">
@@ -213,7 +218,7 @@
           </div>
         </div>
       </div>
-      <div class="xyz tile" id="contact">
+      <div class="xyz" id="contact">
         <p class="title">CONTACT</p>
         <div class="hire-me">
           <a class="hire-me__card" href="https://facebook.com/caophuoclonq" target="_blank">
@@ -238,22 +243,22 @@
           
           <div class="contact__card ">
             <!-- <h1>Send me message!</h1> -->
-            <form class="form">
+            <form class="form" id="myForm" action="#">
               <h1>Send Message</h1>
               <div class="form__group field">
-                <input type="text" class="form__field" placeholder="Name"/>
+                <input type="text" class="form__field" placeholder="Name" name="name"/>
                 <label for="" class="form__label">Name</label>
               </div>
               <div class="form__group field">
-                <input type="text" class="form__field" placeholder="Subject"/>
+                <input type="text" class="form__field" placeholder="Subject" name="subject"/>
                 <label for="" class="form__label">Subject</label>
               </div>
               <div class="form__group field">
-                <input type="text" class="form__field" placeholder="Email"/>
+                <input type="text" class="form__field" placeholder="Email" name="email"/>
                 <label for="" class="form__label">Email</label>
               </div>
               <div class="form__group field">
-                <textarea type="text" class="form__field" placeholder="Message" rows="5" resize></textarea>
+                <textarea type="text" class="form__field" placeholder="Message" rows="5" resize name="message"></textarea>
                 <label for="" class="form__label">Message</label>
               </div>
               <input type="submit" class="btn-send" value="Send"/>

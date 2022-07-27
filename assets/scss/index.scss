@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Rokkitt:wght@500&display=swap');
 @import '../scss/reset.scss';
+@import '../scss/responsive.scss';
 $blue-primary: #69a9df;
 $accent-primary: #94d5ba;
 html {
@@ -7,13 +8,15 @@ html {
   font-size: 1rem;
   scroll-behavior: smooth;
 }
-
+.notworking {
+  display: none;
+}
 .social-icons {
   width: 2rem;
   height: 2rem;
 }
 a {
-  color: #42464f;
+  color: #42464f !important;
 }
 body {
   display: flex;
@@ -49,11 +52,15 @@ body {
       }
     }
     nav {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 1rem;
-      width: 100%;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      margin-bottom: 1rem !important;
+      width: 100% !important;
+      background-color: transparent;
+      box-shadow: none;
+      color: #dadadc !important;
+      line-height: 1 !important;
       &:hover {
         color: #fff;
       }
@@ -70,7 +77,7 @@ body {
     }
     .xyz {
       min-height: 50vh;
-      padding: 8rem 4rem;
+      padding: 2rem 1rem;
       box-sizing: border-box;
     }
     #home {
@@ -85,11 +92,11 @@ body {
           font-size: 2rem;
           font-weight: bold;
           overflow: hidden; /* Ensures the content is not revealed until the animation */
-          border-right: 0.15em solid transparent; /* The typwriter cursor */
-          white-space: nowrap; /* Keeps the content on a single line */
-          margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+          // border-right: 0.15em solid transparent; /* The typwriter cursor */
+          // white-space: nowrap; /* Keeps the content on a single line */
+          // margin: 0 auto; /* Gives that scrolling effect as the typing happens */
           letter-spacing: 0.15em; /* Adjust as needed */
-          animation: typing 2s steps(40, end), blink-caret 3s;
+          // animation: typing 2s steps(40, end), blink-caret 3s;
         }
 
         a {
@@ -144,10 +151,10 @@ body {
     }
     #education {
       #education-timeline {
+        margin: 1rem 0;
         .education {
           display: flex;
           gap: 0 2rem;
-          margin: 5rem 0;
           img {
             width: 8rem;
             height: 8rem;
@@ -199,6 +206,9 @@ body {
     .skills {
       &__show {
         display: flex;
+        justify-content: center;
+        align-items: center;
+
         @media screen and (max-width: 120px) {
           display: none;
         }
@@ -239,7 +249,7 @@ body {
       flex-direction: column;
     }
     .hire-me {
-      margin-top: auto;
+      margin-top: 1rem;
       margin-bottom: 1rem;
       display: flex;
       div {
@@ -251,6 +261,7 @@ body {
       gap: 0 1rem;
       box-sizing: border-box;
       margin: auto 0;
+
       &__card {
         box-sizing: border-box;
         flex: 0 0 50%;
@@ -433,6 +444,7 @@ ul {
 }
 
 .timeline {
+  margin: 1rem 0 !important;
   &::before {
     background-color: $blue-primary !important;
   }
@@ -462,6 +474,7 @@ ul {
       }
       .timeline__content {
         padding-right: 0 !important;
+        padding-left: 16px !important;
         &::before {
           border-left-color: $blue-primary !important;
         }
@@ -603,6 +616,7 @@ ul {
 
 .truncate {
   width: 7rem;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -666,4 +680,70 @@ ul {
 }
 section {
   padding: 20px;
+}
+@media screen and (max-width: 1366px) {
+  body {
+    display: block;
+    width: 100%;
+    .xyz {
+      padding: 1rem;
+    }
+    .left-side {
+      display: block;
+      flex-direction: row;
+      position: fixed;
+      width: 100%;
+      padding: 0 0.5rem;
+      z-index: 50;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+      height: auto;
+
+      #name,
+      #desc {
+        display: none;
+      }
+      nav {
+        flex-direction: row;
+        flex: 0 0 14%;
+        justify-content: space-between;
+        .box {
+          width: auto;
+        }
+      }
+    }
+    main {
+      margin: 0;
+    }
+  }
+  body main #projects .project__items {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  // body main .contact {
+  //   display: block;
+  // }
+}
+@media screen and (max-width: 700px) {
+  .gh-contributors {
+    display: none;
+  }
+  body main #projects .project__items {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  body main .contact {
+    display: block;
+  }
+}
+@media screen and (max-width: 400px) {
+  body main .xyz,
+  .xyz,
+  .left-side,
+  nav {
+    display: none !important;
+  }
+  .notworking {
+    width: 100vw;
+    height: 100vh;
+    display: block;
+  }
 }

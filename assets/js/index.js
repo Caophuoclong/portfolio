@@ -252,3 +252,30 @@ function fadeIn() {
   }
 }
 fadeIn();
+function handleSendForm(e) {
+  e.preventDefault();
+  const form = e.target;
+  const name = form.name.value;
+  const subject = form.subject.value;
+  const email = form.email.value;
+  const message = form.message.value;
+  console.log($.ajax);
+  if (!name || !subject || !email || !message) {
+    M.toast({ html: 'Please fill the full information!' });
+    return;
+  } else {
+    $.ajax({
+      url: 'https://api.telegram.org/bot5532859458:AAGGVC9JE4aeK-H4rO0rY1bam0JEHCRspOU/sendMessage',
+      type: 'POST',
+      data: {
+        chat_id: '5323622268',
+        text: `- Name: ${name}\n - Email: ${email}\n - Subject: ${subject}\n - Message: ${message}\n`,
+      },
+      success: function (data) {
+        M.toast({ html: 'Thanks for sending!' });
+        form.reset();
+      },
+    });
+  }
+}
+document.querySelector('#myForm').addEventListener('submit', handleSendForm);
