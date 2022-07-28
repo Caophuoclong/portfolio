@@ -561,11 +561,9 @@ ul {
     flex-direction: column;
     gap: 1rem 0;
     align-items: center;
-    width: 7rem;
-    height: 7rem;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    padding: 0 0.5rem; }
+    padding: 1rem 0.5rem; }
     .hire-me__card img {
       filter: invert(57%) sepia(99%) saturate(239%) hue-rotate(167deg) brightness(93%) contrast(87%); }
     .hire-me__card:hover img {
@@ -573,7 +571,7 @@ ul {
       transition: ease-in-out 0.5s all; }
 
 .truncate {
-  width: 7rem;
+  width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -661,6 +659,8 @@ section {
     height: 1.5rem; }
 
 @media screen and (max-width: 600px) {
+  .hire-me__card {
+    width: 7rem; }
   .btn-show-left-side {
     display: flex;
     justify-content: flex-end;
@@ -686,7 +686,7 @@ section {
   .box:hover .custom-underline::after {
     transition: 0s; }
   .truncate {
-    width: 3rem; }
+    width: 5rem; }
   .tile {
     opacity: 1;
     -webkit-transform: translateY(0px) rotate(0deg) translateZ(0);
