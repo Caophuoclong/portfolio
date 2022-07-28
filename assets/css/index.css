@@ -354,6 +354,8 @@ body {
             body main #projects .project__items__item__technicals__technical__image {
               width: 2rem;
               height: 2rem; }
+        body main #projects .project__items__item__description ul {
+          padding: 0 1rem; }
         body main #projects .project__items__item__link {
           display: flex;
           gap: 0 1rem; }

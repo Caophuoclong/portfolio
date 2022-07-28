@@ -69,7 +69,7 @@ class Portfolio {
         to: new Date(2021, 10),
       },
       descriptions: [
-        'Use pupperteer to create an application that can crawl data.',
+        'Use pupperteer to create an application which can crawl data.',
         'Design and implement a callbox application use ReactJS Typescript.',
         'Add a new feature to the application use Google App Script.',
         'Learn how to write documentation for the application.',
@@ -197,7 +197,10 @@ class Portfolio {
         name: 'Chat App',
         image: './assets/images/projects/chatapp.png',
         technicals: ['ReactJS', 'NodeJS', 'Socket.io', 'TypeScript'],
-        descriptions: '- Test\n- 1234\n- Xin chao',
+        descriptions:
+          "- Application allow user can communicate with another user.\n - Update friend's feed.\n - Send Message ",
+        responsibility: 'Design view, database, and implement the app.',
+        members: 1,
         link: {
           web: 'https://caophuoclong.github.com',
           github: '',
@@ -223,8 +226,14 @@ class Portfolio {
 <img class="project__items__item__image " src="${project.image}" alt="">
 <p class="project__items__item__name">${project.name}</p>
 <!-- Paragraph description -->
-
+<div class="project__items__item__responsibility">
+Responsibility: ${project.responsibility}
+</div>
+<div class="project__items__item__member">
+Member: ${project.members}
+</div>
 <div class="project__items__item__description">
+Descriptions: <br/>
 ${this.converter.makeHtml(project.descriptions)}</div>
 <div class="project__items__item__technicals">
 ${techhh}
@@ -368,6 +377,8 @@ I code this project with **HTML5, CSS3 and JavaScript**.
       const innerHeight = window.innerHeight;
       let currentPos, nextPos;
       currentPos = this.navBar.indexOf(nameHref);
+      const xyz = document.querySelector(`#${this.navBar[currentPos]}`);
+      console.log(xyz && xyz.clientHeight / 10);
       const rect = document.querySelector(`#${this.navBar[currentPos]}`)
         ? document
             .querySelector(`#${this.navBar[currentPos]}`)
@@ -376,16 +387,20 @@ I code this project with **HTML5, CSS3 and JavaScript**.
       const st = window.pageYOffset || document.documentElement.scrollTop;
       if (st > lastScrollTop) {
         nextPos = currentPos + 1;
-        if (innerHeight - rect.bottom >= 700) {
+        if (innerHeight - rect.bottom >= 500) {
           this.addSelected(this.navBar[nextPos]);
+          document.querySelector('body').style.overflow = 'hidden';
           window.location.href = `#${this.navBar[nextPos]}`;
+          setTimeout(() => {
+            document.querySelector('body').style.overflow = 'auto';
+          }, 50);
         }
       } else {
         if (currentPos === 0) {
           nextPos = 0;
         } else nextPos = currentPos - 1;
         if (innerHeight - rect.top <= 350) {
-          addSelected(this.navBar[nextPos]);
+          this.addSelected(this.navBar[nextPos]);
           // window.location.href = `#${this.navBar[nextPos]}`;
         }
       }
