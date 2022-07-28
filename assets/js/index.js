@@ -74,33 +74,30 @@ document.querySelector('#introMySelf').innerHTML =
   converter.makeHtml(introMySelf);
 document.querySelector('#homeIntro').innerHTML = converter.makeHtml(homeIntro);
 let projectsHTML = '';
-// projects.forEach((pr) => {
-//   pr.technicals.forEach(
-//     (techh) =>
-//       (tech += `<div class="project__items__item__technicals__technical parallelogram">${techh}</div>
-// `)
-//   );
-// });
-projects.forEach(
-  (project) =>
-    (projectsHTML += `
+projects.forEach((project) => {
+  let techhh = '';
+  project.technicals.forEach(
+    (techh) =>
+      (techhh += `<div class='project__items__item__technicals__technical'>
+      <img
+        class='project__items__item__technicals__technical__image'
+        src=${iconLanguage[techh]}
+      />
+      ${techh}
+    </div>`)
+  );
+  projectsHTML += `
 <div class="tile bottom-right">
 <div class="project__items__item ">
 <img class="project__items__item__image " src="${project.image}" alt="">
 <p class="project__items__item__name">${project.name}</p>
+<!-- Paragraph description -->
+
 <div class="project__items__item__description">
 ${converter.makeHtml(project.descriptions)}</div>
 <div class="project__items__item__technicals">
-  ${project.technicals.map(
-    (tech) => `<div class="project__items__item__technicals__technical ">
-    <img class="project__items__item__technicals__technical__image" src="${iconLanguage[tech]}"/>
-    ${tech}
-    </div>
-    `
-  )}
+${techhh}
 </div>
-<!-- Paragraph description -->
-
 <div class="project__items__item__link">
   ${
     project.link.web.length > 0
@@ -129,8 +126,8 @@ ${converter.makeHtml(project.descriptions)}</div>
 </div>
 </div>
            
-          </div>`)
-);
+          </div>`;
+});
 document.querySelector('#project_list').innerHTML = projectsHTML;
 let expTimeLine = '';
 expirences.forEach((exp) => {
@@ -192,6 +189,14 @@ window.addEventListener('load', () => {
   document.querySelector('nav').innerHTML = html;
   addSelected(selected);
   document.querySelector(`#${selected}`).scrollIntoView();
+  window.addEventListener('resize', () => {
+    const windowWidth = window.innerWidth;
+    if (windowWidth < 600) {
+      document.querySelector('.left-side').style.visibility = 'hidden';
+    } else {
+      document.querySelector('.left-side').style.visibility = 'visible';
+    }
+  });
   window.addEventListener('hashchange', (e) => {
     const url = e.newURL.split('#')[1];
     const prevSelected = document.querySelector('.selected');
@@ -199,6 +204,12 @@ window.addEventListener('load', () => {
     const currentPos = xzs.indexOf(name);
     const nextPos = xzs.indexOf(url);
     addSelected(url);
+    const windowWidth = window.innerWidth;
+    if (windowWidth < 600) {
+      document.querySelector('.left-side').style.visibility = 'hidden';
+    } else {
+      document.querySelector('.left-side').style.visibility = 'visible';
+    }
   });
   let lastScrollTop = 0;
   window.addEventListener('scroll', (e) => {
@@ -213,15 +224,17 @@ window.addEventListener('load', () => {
     const st = window.pageYOffset || document.documentElement.scrollTop;
     if (st > lastScrollTop) {
       nextPos = currentPos + 1;
-      if (innerHeight - rect.bottom >= 800) {
+      if (innerHeight - rect.bottom >= 700) {
         addSelected(xzs[nextPos]);
+        window.location.href = `#${xzs[nextPos]}`;
       }
     } else {
       if (currentPos === 0) {
         nextPos = 0;
       } else nextPos = currentPos - 1;
-      if (innerHeight - rect.top <= 150) {
+      if (innerHeight - rect.top <= 350) {
         addSelected(xzs[nextPos]);
+        // window.location.href = `#${xzs[nextPos]}`;
       }
     }
     lastScrollTop = st;
@@ -252,6 +265,17 @@ function fadeIn() {
   }
 }
 fadeIn();
+function showLoading(boo) {
+  const loading = document.querySelector('#loading');
+  const body = document.querySelector('body');
+  if (boo) {
+    loading.style.display = 'flex';
+    body.style.overflow = 'hidden';
+  } else {
+    loading.style.display = 'none';
+    body.style.overflow = 'auto';
+  }
+}
 function handleSendForm(e) {
   e.preventDefault();
   const form = e.target;
@@ -261,9 +285,15 @@ function handleSendForm(e) {
   const message = form.message.value;
   console.log($.ajax);
   if (!name || !subject || !email || !message) {
-    M.toast({ html: 'Please fill the full information!' });
+    Swal.fire({
+      title: 'Error!',
+      text: 'Please fill the full information!',
+      icon: 'error',
+      confirmButtonText: 'Okay',
+    });
     return;
   } else {
+    showLoading(true);
     $.ajax({
       url: 'https://api.telegram.org/bot5532859458:AAGGVC9JE4aeK-H4rO0rY1bam0JEHCRspOU/sendMessage',
       type: 'POST',
@@ -272,10 +302,24 @@ function handleSendForm(e) {
         text: `- Name: ${name}\n - Email: ${email}\n - Subject: ${subject}\n - Message: ${message}\n`,
       },
       success: function (data) {
-        M.toast({ html: 'Thanks for sending!' });
+        showLoading(false);
+        Swal.fire({
+          title: 'Success!',
+          text: 'Thanks for sending me your message!',
+          icon: 'success',
+          confirmButtonText: 'Cool',
+        });
         form.reset();
       },
     });
   }
 }
 document.querySelector('#myForm').addEventListener('submit', handleSendForm);
+function handleShowDirect() {
+  const navBar = document.querySelector('.left-side');
+  if (navBar.style.visibility === 'visible') {
+    navBar.style.visibility = 'hidden';
+  } else {
+    navBar.style.visibility = 'visible';
+  }
+}

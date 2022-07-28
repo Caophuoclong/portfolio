@@ -20,14 +20,20 @@
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="./assets/js/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="./assets/css/sweetalert2.min.css">
     <link rel="stylesheet" href="./assets/css/index.css" />
 
     <script src="./assets/js/timeline.min.js"></script>
     <link href="./assets/css/timeline.min.css" rel="stylesheet" />
   </head>
   <body>
+    <!-- <div style="padding: 1rem; background-color: #F5F5F5; position: fixed; width: 100%; z-index: 100; box-sizing: border-box;" >
+      
+    </div> -->
+    <button onclick="handleShowDirect()" class="btn-show-left-side">
+      <img src="./assets/icons/menu.svg" alt="">
+      </button>
     <aside class="left-side">
       <!-- <image
         id="avatar"
@@ -39,7 +45,7 @@
         <span>Software Engineering</span>
         in VietNam
       </p>
-      <nav>
+      <nav id="direct">
         <!-- Insert from js -->
       </nav>
     </aside>
@@ -169,7 +175,7 @@
         </div>
       </div>
       <div class="xyz" id="education">
-        <p class="title">JOURNEY</p>
+        <p class="title">EDUCATION</p>
         <div id="education-timeline">
           <div class="education">
             <img src="./assets/images/logo-ctu.png" alt="logo school" />
@@ -230,9 +236,9 @@
             />
             <p class="truncate">@caophuoclonq</p>
           </a>
-          <a class="hire-me__card " href="mailto:caophuoclong1@gmail.com">
+          <a class="hire-me__card " href="mailto:caophuoclong@duck.com">
             <img class="social-icons" src="./assets/icons/mail.svg" alt="">
-            <p class="truncate">caophuoclong1@gmail.com</p>
+            <p class="truncate" >caophuoclong@duck.com</p>
           </a>   
           <a class="hire-me__card " href="https://github.com/Caophuoclong" target="_blank">
             <img class="social-icons" src="./assets/icons/github.svg" alt="">
@@ -269,9 +275,16 @@
         
       </div>
     </main>
+    <div id="loading">
+      <div class="loading">
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+    </div>
     <footer>
 
     </footer>
-    <script src="./assets/js/index.js"></script>
+    <script src="./assets/js/obfuscated.js"></script>
   </body>
 </html>
