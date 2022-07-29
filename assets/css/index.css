@@ -143,7 +143,7 @@ body {
         height: 42px;
         border-radius: 100%; }
       body .left-side__brand__field__name {
-        font-size: 1.5rem;
+        font-size: 2rem;
         background: #17cfc3;
         background: radial-gradient(circle farthest-corner at center center, #17cfc3 0%, #4f82cf 100%);
         background-clip: text;
@@ -395,7 +395,8 @@ body {
     position: relative;
     display: inline-block;
     font-weight: 400;
-    text-align: center; }
+    text-align: center;
+    font-size: 1.4rem; }
   .box .custom-underline::after,
   .box .selected::after {
     content: '';

@@ -45,7 +45,7 @@ body {
         border-radius: 100%;
       }
       &__name {
-        font-size: 1.5rem;
+        font-size: 2rem;
         background: #17cfc3;
         background: radial-gradient(
           circle farthest-corner at center center,
@@ -384,6 +384,7 @@ body {
     display: inline-block;
     font-weight: 400;
     text-align: center;
+    font-size: 1.4rem;
   }
 
   .custom-underline::after,
