@@ -31,24 +31,20 @@
     <!-- <div style="padding: 1rem; background-color: #F5F5F5; position: fixed; width: 100%; z-index: 100; box-sizing: border-box;" >
       
     </div> -->
-    <button onclick="handleShowDirect()" class="btn-show-left-side">
-      <img src="./assets/icons/menu.svg" alt="">
-      </button>
-    <aside class="left-side">
-      <!-- <image
-        id="avatar"
-        alt="this is avatar"
-        src="https://lh3.googleusercontent.com/pw/AM-JKLV4iwpOq2gtloZn84NSpCumuirSBXSpgBnUtPLRNBvQU_WNNNNKhF-IZXKmVo-dHr1HATJcvFzL0Luclz2xoaYMzGVHV5geHVoZnwoAquaga1RnwW1X5wOol-n8Zeo2HktkuEFRz-6nlX7w4H65c1vt=w1319-h955-no?authuser=0"
-      /> -->
-      <p id="name">Long Phuoc Tran Cao</p>
-      <p id="desc">
-        <span>Software Engineering</span>
-        in VietNam
-      </p>
+    
+    <header class="left-side">
+      <div class="left-side__brand__field">
+        <img src="https://i.picsum.photos/id/229/64/64.jpg?hmac=Ay9dajHvaxZQwLBhIMsf068D7PXg2YU6B-MuW2WNxsU" alt="" class="left-side__brand__field__logo">
+        <span class="left-side__brand__field__name">Cao Phuoc Long</span>
+      </div>
       <nav id="direct">
         <!-- Insert from js -->
       </nav>
-    </aside>
+      <button class="btn-theme-change btn" onclick="Portfolio.toggleDarkMode()">Dark</button>
+      <button onclick="Portfolio.handleShowDirect()" class="btn-show-header btn">
+        <img src="./assets/icons/menu.svg" alt="">
+      </button>
+    </header>
     <main>
       <div class="notworking">My site not support your device resolution, maybe it too small!</div>
       <div class="xyz" id="home">

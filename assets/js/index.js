@@ -23,6 +23,10 @@ class Portfolio {
     HTML5: this.imgPath + 'w3_html5-icon.svg',
     CSS3: this.imgPath + 'w3_css-icon.svg',
     Javascript: this.imgPath + 'javascript-icon.svg',
+    TailwindCSS: this.imgPath + 'tailwindcss-icon.svg',
+    SASS: this.imgPath + 'sass-lang-icon.svg',
+    Sun: this.imgPath + 'sun.svg',
+    Dark: this.imgPath + 'dark.svg',
   };
   mySkills = [
     'HTML5',
@@ -37,6 +41,8 @@ class Portfolio {
     'ExpressJS',
     'Github',
     'Javascript',
+    'TailwindCSS',
+    'SASS',
   ];
   iconWebSite = {
     web: this.imgPath + 'website.svg',
@@ -79,12 +85,13 @@ class Portfolio {
   capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-  handleShowDirect() {
-    const navBar = document.querySelector('.left-side');
-    if (navBar.style.visibility === 'visible') {
-      navBar.style.visibility = 'hidden';
+  static handleShowDirect() {
+    const navBar = document.querySelector('#direct');
+    console.log(navBar.style.display);
+    if (navBar.style.display === 'flex') {
+      navBar.style.display = 'none';
     } else {
-      navBar.style.visibility = 'visible';
+      navBar.style.display = 'flex';
     }
   }
   static showLoading(boo) {
@@ -196,9 +203,15 @@ class Portfolio {
       {
         name: 'Chat App',
         image: './assets/images/projects/chatapp.png',
-        technicals: ['ReactJS', 'NodeJS', 'Socket.io', 'TypeScript'],
+        technicals: [
+          'ReactJS',
+          'NodeJS',
+          'Socket.io',
+          'TypeScript',
+          'TailwindCSS',
+        ],
         descriptions:
-          "- Application allow user can communicate with another user.\n - Update friend's feed.\n - Send Message ",
+          '- Application allow user can communicate with another user.\n - New feeds.\n - Send Message ',
         responsibility: 'Design view, database, and implement the app.',
         members: 1,
         link: {
@@ -339,14 +352,47 @@ I code this project with **HTML5, CSS3 and JavaScript**.
     this.initSkills();
     this.initIntro();
   }
+  static toggleDarkMode() {
+    const body = document.querySelector('body');
+    const btn = document.querySelector('.btn-theme-change');
+    const portfolio = new Portfolio();
+    if (body.classList.contains('dark-mode')) {
+      body.classList.remove('dark-mode');
+      btn.innerHTML = `<img src="${portfolio.iconLanguagePath.Dark}"/>`;
+    } else {
+      body.classList.add('dark-mode');
+      btn.innerHTML = `<img src="${portfolio.iconLanguagePath.Sun}"/>`;
+    }
+    window.localStorage.setItem(
+      'dark-mode',
+      body.classList.contains('dark-mode')
+    );
+  }
   handler() {
+    // window.addEventListener('scroll', (e) => {
+    //   if(e.dou)
+    // })
+    window.addEventListener('load', () => {
+      const body = document.querySelector('body');
+      const windowWidth = window.innerWidth;
+      if (windowWidth < 767) {
+        document.querySelector('#direct').style.display = 'none';
+      }
+      const isDark = window.localStorage.getItem('dark-mode');
+      const btn = document.querySelector('.btn-theme-change');
+      if (isDark) {
+        body.classList.add('dark-mode');
+        btn.innerHTML = `<img src="${portfolio.iconLanguagePath.Sun}"/>`;
+      } else {
+        body.classList.remove('dark-mode');
+        btn.innerHTML = `<img src="${portfolio.iconLanguagePath.Dark}"/>`;
+      }
+    });
     window.addEventListener('resize', () => {
       const windowWidth = window.innerWidth;
-      if (windowWidth < 600) {
-        document.querySelector('.left-side').style.visibility = 'hidden';
-      } else {
-        document.querySelector('.left-side').style.visibility = 'visible';
-      }
+      // if (windowWidth > 600) {
+      //   document.querySelector('#direct').style.display = 'flex';
+      // }
     });
     document
       .querySelector('#myForm')
@@ -358,14 +404,13 @@ I code this project with **HTML5, CSS3 and JavaScript**.
       this.addSelected(selected);
       document.querySelector(`#${selected}`).scrollIntoView();
     });
-    window.addEventListener('hashchange', (e) => {
-      const url = e.newURL.split('#')[1];
+    window.addEventListener('popstate', (e) => {
+      const url = window.location.href.split('#')[1];
       this.addSelected(url);
       const windowWidth = window.innerWidth;
+      console.log(windowWidth);
       if (windowWidth < 600) {
-        document.querySelector('.left-side').style.visibility = 'hidden';
-      } else {
-        document.querySelector('.left-side').style.visibility = 'visible';
+        document.querySelector('#direct').style.display = 'none';
       }
     });
     let lastScrollTop = 0;
@@ -378,7 +423,6 @@ I code this project with **HTML5, CSS3 and JavaScript**.
       let currentPos, nextPos;
       currentPos = this.navBar.indexOf(nameHref);
       const xyz = document.querySelector(`#${this.navBar[currentPos]}`);
-      console.log(xyz && xyz.clientHeight / 10);
       const rect = document.querySelector(`#${this.navBar[currentPos]}`)
         ? document
             .querySelector(`#${this.navBar[currentPos]}`)
